@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maxi Nuñez · Full-Stack Developer</title>
-<meta name="description" content="Maxi Nuñez — full-stack developer from Argentina. Web and mobile products with React, React Native, TypeScript, Node.js and AI.">
+<title>Máximo Nuñez · Full-Stack Developer</title>
+<meta name="description" content="Máximo Nuñez — full-stack developer from Argentina. Web and mobile products with React, React Native, TypeScript, Node.js and AI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -96,6 +96,8 @@ ul.feat li::before{content:"→";position:absolute;left:0;color:var(--accent);fo
 .browser.back{top:50%;left:4%;transform:translateY(-78%) rotate(-3deg);opacity:.85}
 .browser.front{top:50%;right:4%;transform:translateY(-22%) rotate(2deg);z-index:2}
 @media (max-width:560px){.visual.browsers{min-height:300px}.browser{width:86%}}
+.visual.browsers.solo{min-height:auto}
+.visual.browsers.solo .browser{position:static;width:100%;transform:none}
 /* flow diagram (bot) */
 .flow{width:100%;max-width:380px;display:grid;gap:10px}
 .step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
@@ -171,11 +173,12 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
     <span class="tag"><span class="dot"></span> <span data-l="en">Open to remote opportunities</span><span data-l="es">Abierto a oportunidades remotas</span></span>
     <h1 data-l="en">I build apps <em>people actually use</em>.</h1>
     <h1 data-l="es">Construyo apps que <em>la gente usa</em> de verdad.</h1>
-    <p class="lead" data-l="en">I'm Maxi Nuñez, a full-stack developer from Argentina. I build web and mobile products with React, React Native, TypeScript and Node.js, integrate third-party APIs, and use AI both inside the products and to ship them faster — from the first idea to a live product with real users.</p>
-    <p class="lead" data-l="es">Soy Maxi Nuñez, desarrollador full stack de Argentina. Hago productos web y móviles con React, React Native, TypeScript y Node.js, integro APIs de terceros y uso inteligencia artificial tanto dentro de los productos como para construirlos más rápido: desde la idea hasta que está online y con usuarios reales.</p>
+    <p class="lead" data-l="en">I'm Máximo Nuñez, a full-stack developer from Argentina. I build web and mobile products with React, React Native, TypeScript and Node.js, integrate third-party APIs, and use AI both inside the products and to ship them faster — from the first idea to a live product with real users.</p>
+    <p class="lead" data-l="es">Soy Máximo Nuñez, desarrollador full stack de Argentina. Hago productos web y móviles con React, React Native, TypeScript y Node.js, integro APIs de terceros y uso inteligencia artificial tanto dentro de los productos como para construirlos más rápido: desde la idea hasta que está online y con usuarios reales.</p>
     <div class="cta">
       <a class="btn primary" href="#projects"><span data-l="en">View projects ↓</span><span data-l="es">Ver proyectos ↓</span></a>
       <a class="btn" href="https://github.com/maxi579" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
     <div class="stats">
       <div class="stat"><b>104</b><span data-l="en">World Cup 2026 matches tracked live, from group stage to final</span><span data-l="es">partidos del Mundial 2026 en el prode, de grupos a la final</span></div>
@@ -277,27 +280,10 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
             <li>Webhooks verificados con firma y 14 tests automáticos</li>
           </ul>
           <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MySQL</span><span class="chip">Retell AI</span><span class="chip">Twilio</span><span class="chip">Webhooks</span><span class="chip">Tests</span></div>
-          <div class="links-row"><a href="https://github.com/maxi579/bot-turnos-ia" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
+          <div class="links-row"><a href="https://maxi579.github.io/bot-turnos-ia/demo/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/bot-turnos-ia" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
         </div>
-        <div class="visual">
-          <div class="flow" data-l="en">
-            <div class="step"><span class="n">1</span><div><b>Customer calls</b><small>The Retell AI voice agent answers</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">2</span><div><b>Availability check</b><small>The API returns open slots from MySQL</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">3</span><div><b>Customer picks, AI books</b><small>If the slot was just taken, it offers alternatives</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">4</span><div><b>Saved and confirmed</b><small>Stored in MySQL, WhatsApp sent via Twilio</small></div></div>
-          </div>
-          <div class="flow" data-l="es">
-            <div class="step"><span class="n">1</span><div><b>El cliente llama</b><small>Atiende el agente de voz de Retell AI</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">2</span><div><b>Consulta de disponibilidad</b><small>La API devuelve los horarios libres desde MySQL</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">3</span><div><b>El cliente elige y la IA reserva</b><small>Si el horario se ocupó, ofrece alternativas</small></div></div>
-            <span class="arrow">↓</span>
-            <div class="step"><span class="n">4</span><div><b>Turno guardado y confirmado</b><small>Se guarda en MySQL y sale un WhatsApp por Twilio</small></div></div>
-          </div>
+        <div class="visual browsers solo">
+          <div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><img src="img/bot-demo.jpg" alt="Demo: simulated call with the AI agent, the server function it calls, the WhatsApp confirmation and the new appointment on the business dashboard" loading="lazy"></div>
         </div>
       </article>
 
@@ -340,15 +326,14 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
       <p data-l="en">Have a project or an opportunity? Reach out.</p>
       <p data-l="es">Si tenés un proyecto o una oportunidad, escribime.</p>
       <div class="cta">
-        <!-- PENDIENTE: enlace real de LinkedIn y correo de contacto -->
-        <a class="btn primary" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn" href="https://github.com/maxi579" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer><span data-l="en">© 2026 Maxi Nuñez · Built with HTML, CSS and a bit of coffee</span><span data-l="es">© 2026 Maxi Nuñez · Hecho con HTML, CSS y un poco de café</span></footer>
+<footer><span data-l="en">© 2026 Máximo Nuñez · Built with HTML, CSS and a bit of coffee</span><span data-l="es">© 2026 Máximo Nuñez · Hecho con HTML, CSS y un poco de café</span></footer>
 
 <script>
   const root = document.documentElement;
@@ -357,7 +342,7 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
   function ponerIdioma(idioma) {
     root.dataset.lang = idioma;
     root.lang = idioma;
-    document.title = idioma === 'es' ? 'Maxi Nuñez · Desarrollador full stack' : 'Maxi Nuñez · Full-Stack Developer';
+    document.title = idioma === 'es' ? 'Máximo Nuñez · Desarrollador full stack' : 'Máximo Nuñez · Full-Stack Developer';
   }
   let idioma = 'en';
   try { idioma = localStorage.getItem('lang') || ((navigator.language || '').startsWith('es') ? 'es' : 'en'); } catch (e) {}
