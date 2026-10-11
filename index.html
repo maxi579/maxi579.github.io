@@ -198,33 +198,33 @@ footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
 
     <div class="projects">
 
-      <!-- GASTOS -->
+      <!-- SORTED -->
       <article class="card">
         <div class="body">
           <span class="status wip"><span data-l="en">● In development · Mobile app</span><span data-l="es">● En desarrollo · App móvil</span></span>
-          <h3><span data-l="en">Gastos — personal finance</span><span data-l="es">App de Gastos</span></h3>
-          <p data-l="en">A mobile app that doesn't just log what you spent — it helps you decide <em>before</em> you buy. Built around how money works in Argentina (credit card installments, statement dates and inflation), with language simple enough for anyone to use.</p>
-          <p data-l="es">Una app móvil que no solo anota lo que gastaste: te ayuda a decidir <em>antes</em> de comprar. Está pensada para manejar tarjetas, cuotas e inflación en Argentina, con un lenguaje tan simple que la puede usar cualquiera.</p>
+          <h3><span data-l="en">Sorted — your money, sorted</span><span data-l="es">Sorted — tu plata, en orden</span></h3>
+          <p data-l="en">A personal finance app that does the work for you. Built around how money works in Argentina (credit card installments, fixed bills, cash and inflation), it logs expenses almost on its own and tells you what matters, in language simple enough for anyone to use.</p>
+          <p data-l="es">Una app de finanzas personales que hace el trabajo por vos. Pensada para cómo se maneja la plata en Argentina (cuotas, gastos fijos, efectivo e inflación), anota los gastos casi sola y te avisa lo importante, con un lenguaje tan simple que la puede usar cualquiera.</p>
           <ul class="feat" data-l="en">
-            <li><b>"Should I buy it?"</b> — enter a price and get a clear yes / careful / better not, based on your salary and the months the installments would take up</li>
-            <li>Picks the best card to pay with today, from each card's closing and due dates</li>
-            <li>Compares paying upfront vs. installments in today's money, with official inflation and exchange rates updated automatically</li>
-            <li>Reads credit card statements (PDF) with AI (Claude API) and finds the expenses you forgot to log</li>
-            <li>Natural-language input ("sneakers 120k in 6 installments with visa"), nightly reminders and offline support</li>
+            <li><b>Logs itself</b>: auto-debited subscriptions, payments detected from wallet notifications (Android) and forwarded emails, receipts read from a photo, and voice entry with Siri</li>
+            <li><b>Learns as you use it</b>: categories, an automatic monthly budget per category, and alerts when you spend more than usual</li>
+            <li>Fixed bills and subscriptions with due-date reminders; a cash wallet count that finds what you forgot to log</li>
+            <li>AI assistant (Claude API with tool use) that answers with your real numbers; "Should I buy it?" and installments vs. upfront in today's money</li>
+            <li>Net worth and a “how much will it earn?” calculator with live fixed-term rates from the Central Bank and official inflation</li>
           </ul>
           <ul class="feat" data-l="es">
-            <li><b>¿Lo compro?</b>: ponés un precio y responde “sí”, “con cuidado” o “mejor no” según tu sueldo y los meses que ocuparían las cuotas</li>
-            <li>Te dice con qué tarjeta conviene pagar hoy, según el cierre y el vencimiento de cada una</li>
-            <li>Compara contado contra cuotas en plata de hoy, con la inflación del INDEC y el dólar tarjeta actualizados solos</li>
-            <li>Lee el resumen de la tarjeta con IA (Claude) y te muestra los gastos que te olvidaste de anotar</li>
-            <li>Carga en lenguaje natural (“zapas 120k en 6 cuotas con visa”), recordatorio a la noche y funciona sin internet</li>
+            <li><b>Se anota sola</b>: débitos automáticos, pagos detectados en las notificaciones de billeteras (Android) y en mails reenviados, tickets leídos con una foto y carga por voz con Siri</li>
+            <li><b>Aprende con el uso</b>: las categorías, un presupuesto mensual automático por categoría y avisos cuando gastás más de lo normal</li>
+            <li>Gastos fijos y suscripciones con avisos de vencimiento; conteo de la billetera que encuentra el efectivo que no anotaste</li>
+            <li>Asistente con IA (Claude API con herramientas) que responde con tus números; ¿Lo compro? y contado contra cuotas en plata de hoy</li>
+            <li>Patrimonio y calculadora “¿cuánto me rinde?” con las tasas de plazo fijo del BCRA y la inflación del INDEC</li>
           </ul>
-          <div class="chips"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Claude API</span><span class="chip">Tests</span></div>
-          <div class="links-row"><a href="app-gastos/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/app-gastos" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
+          <div class="chips"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Claude API</span><span class="chip">Kotlin</span><span class="chip">Tests</span></div>
+          <div class="links-row"><a href="sorted/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/sorted" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
         </div>
         <div class="visual phones">
-          <img class="phone back" src="img/gastos-comprar.jpg" alt="'Should I buy it?' screen answering yes" loading="lazy">
-          <img class="phone front" src="img/gastos-inicio.jpg" alt="Home screen with this month's payments and the assistant's tips" loading="lazy">
+          <img class="phone back" src="img/sorted-fijos.jpg" alt="Fixed bills and subscriptions screen with paid and upcoming bills" loading="lazy">
+          <img class="phone front" src="img/sorted-inicio.jpg" alt="Sorted home screen with this month's payments and the assistant's tips" loading="lazy">
         </div>
       </article>
 
