@@ -1,365 +1,256 @@
-<!DOCTYPE html>
-<html lang="en" data-lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Máximo Nuñez · Full-Stack Developer</title>
-<meta name="description" content="Máximo Nuñez — full-stack developer from Argentina. Web and mobile products with React, React Native, TypeScript, Node.js and AI.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Máximo Nuñez</title>
+<meta name="description" content="Máximo Nuñez — full-stack engineer from Mar del Plata, Argentina. React, React Native, TypeScript, Node.js and AI inside real products.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* Layout: senior-engineer convention. Sticky left column (name, role, nav, links),
+   scrolling right column (about, experience timeline, projects). Text first, quiet palette, one accent. */
 :root{
-  --bg:#f6f4ef; --surface:#ffffff; --surface-2:#efece5; --ink:#16151a; --muted:#5f5c66; --line:#dedad0;
-  --accent:#e2522f; --accent-ink:#ffffff; --ok:#1f8a4c; --warn:#b7791f; --info:#3156c9;
-  --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+  --bg:#FAFAF9; --fg:#18181B; --muted:#71717A; --faint:#A1A1AA; --line:#E7E7E5;
+  --hover:#F1F1EF; --accent:#2F5BEA; --tag-bg:#EEF2FD; --live:#22A45D;
+  --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,Consolas,monospace;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#111014; --surface:#19181d; --surface-2:#222127; --ink:#f2f0ea; --muted:#a19ea8; --line:#2e2c33;
-    --accent:#ff6a43; --accent-ink:#111014; --ok:#4cc483; --warn:#e8b04e; --info:#7c9bff;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-  }
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E0E10; --fg:#ECECEE; --muted:#9A9AA3; --faint:#62626B; --line:#232327;
+  --hover:#17171A; --accent:#8AA6FF; --tag-bg:#1A2033; --live:#3DD07E; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#111014; --surface:#19181d; --surface-2:#222127; --ink:#f2f0ea; --muted:#a19ea8; --line:#2e2c33;
-  --accent:#ff6a43; --accent-ink:#111014; --ok:#4cc483; --warn:#e8b04e; --info:#7c9bff;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
-}
-*{box-sizing:border-box;margin:0;padding:0}
+  --bg:#0E0E10; --fg:#ECECEE; --muted:#9A9AA3; --faint:#62626B; --line:#232327;
+  --hover:#17171A; --accent:#8AA6FF; --tag-bg:#1A2033; --live:#3DD07E; color-scheme:dark}
+
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:"Bricolage Grotesque",Inter,sans-serif;line-height:1.05;letter-spacing:-.02em}
-.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--muted);font:400 15.5px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--fg);text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+html[lang="es"] [data-l="en"],html[lang="en"] [data-l="es"]{display:none!important}
+::selection{background:var(--tag-bg);color:var(--fg)}
 
-/* nav */
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font:800 20px "Bricolage Grotesque",sans-serif;text-decoration:none}
-.logo span{color:var(--accent)}
-.links{display:flex;gap:24px;align-items:center}
-.links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500}
-.links a:hover{color:var(--ink)}
-.theme-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:34px;height:34px;cursor:pointer;display:grid;place-items:center}
+.page{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:64px}
 
-/* hero */
-.hero{padding:96px 0 72px}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 20%,transparent)}
-.hero h1{font-size:clamp(44px,8vw,88px);font-weight:800;margin:24px 0 20px;max-width:14ch}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:58ch}
-.cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface)}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn:hover{transform:translateY(-1px)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:64px}
-.stat{background:var(--surface);padding:20px 24px}
-.stat b{display:block;font:800 32px "Bricolage Grotesque",sans-serif}
-.stat span{color:var(--muted);font-size:14px}
+/* left column */
+.side{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding-block:88px 72px;display:flex;flex-direction:column}
+.side h1{margin:0;color:var(--fg);font:600 clamp(36px,4.6vw,50px)/1.05 var(--sans);letter-spacing:-.035em}
+.role{margin:12px 0 0;color:var(--fg);font-size:18px;font-weight:500;letter-spacing:-.01em}
+.tagline{margin:16px 0 0;max-width:34ch}
+.now{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font:400 12.5px var(--mono);color:var(--muted)}
+.now i{width:7px;height:7px;border-radius:50%;background:var(--live)}
 
-/* sections */
-section{padding:72px 0}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
-.sec-head h2{font-size:clamp(32px,4.5vw,48px);font-weight:800}
-.sec-head p{color:var(--muted);max-width:44ch}
-.eyebrow{font:500 12px "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);display:block;margin-bottom:10px}
+.nav{list-style:none;margin:56px 0 0;padding:0;display:grid;gap:14px}
+.nav a{display:inline-flex;align-items:center;gap:14px;font:500 11.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.nav a::before{content:"";width:32px;height:1px;background:currentColor;transition:width .2s ease}
+.nav a:hover,.nav a.active{color:var(--fg)}
+.nav a:hover::before,.nav a.active::before{width:64px}
 
-/* project cards */
-.projects{display:grid;gap:24px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:1.05fr 1fr}
-.card .body{padding:32px;display:flex;flex-direction:column;gap:16px}
-.card h3{font-size:30px;font-weight:800}
-.card p{color:var(--muted)}
-.status{display:inline-flex;align-items:center;gap:6px;font:500 12px "JetBrains Mono",monospace;padding:4px 10px;border-radius:999px;width:fit-content;border:1px solid}
-.status.live{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
-.status.wip{color:var(--info);border-color:color-mix(in srgb,var(--info) 40%,transparent);background:color-mix(in srgb,var(--info) 10%,transparent)}
-.status.mvp{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:color-mix(in srgb,var(--warn) 10%,transparent)}
-ul.feat{list-style:none;display:grid;gap:8px;font-size:15px}
-ul.feat li{padding-left:22px;position:relative}
-ul.feat li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.chip{font:500 12px "JetBrains Mono",monospace;padding:4px 9px;border-radius:6px;background:var(--surface-2);color:var(--ink)}
-.card .links-row{display:flex;gap:16px;font-size:14px;font-weight:600}
-.card .links-row a{color:var(--accent);text-decoration:none}
-.card .links-row a:hover{text-decoration:underline}
-.visual{background:var(--surface-2);border-left:1px solid var(--line);padding:28px;display:flex;align-items:center;justify-content:center;min-height:300px}
+.side-foot{margin-top:auto;display:flex;align-items:center;gap:18px}
+.side-foot a{color:var(--muted);display:inline-flex}
+.side-foot a:hover{color:var(--fg)}
+.side-foot svg{width:21px;height:21px}
+.toggles{margin-left:auto;display:flex;gap:4px}
+.toggles button{font:500 11.5px var(--mono);background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:4px 9px;cursor:pointer}
+.toggles button:hover{color:var(--fg);border-color:var(--faint)}
 
-/* app screenshots in browser frames (prode) */
-.visual.browsers{position:relative;min-height:340px;overflow:hidden}
-.browser{position:absolute;width:78%;border-radius:12px;overflow:hidden;background:#0d0d0d;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.browser img{display:block;width:100%;height:auto}
-.browser-bar{display:flex;gap:6px;padding:8px 10px;background:#1a1a1a}
-.browser-bar i{width:8px;height:8px;border-radius:50%;background:#3a3a3a}
-.browser.back{top:50%;left:4%;transform:translateY(-78%) rotate(-3deg);opacity:.85}
-.browser.front{top:50%;right:4%;transform:translateY(-22%) rotate(2deg);z-index:2}
-@media (max-width:560px){.visual.browsers{min-height:300px}.browser{width:86%}}
-.visual.browsers.solo{min-height:auto}
-.visual.browsers.solo .browser{position:static;width:100%;transform:none}
-/* flow diagram (bot) */
-.flow{width:100%;max-width:380px;display:grid;gap:10px}
-.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.step .n{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font:700 14px "JetBrains Mono",monospace}
-.step b{display:block;font-size:14px}
-.step small{color:var(--muted);font-size:12.5px}
-.arrow{justify-self:center;color:var(--muted);font-size:14px;line-height:1}
+/* right column */
+main{padding-block:88px 96px}
+section{scroll-margin-top:72px;margin-bottom:104px}
+.mhead{display:none}
+.about p{margin:0 0 16px;max-width:60ch}
+.about b{color:var(--fg);font-weight:500}
+.about a{border-bottom:1px solid var(--line)}
+.about a:hover{border-color:var(--fg)}
 
-/* app screenshots in phone frames */
-.visual.phones{position:relative;min-height:440px;overflow:hidden}
-.phone{position:absolute;width:190px;border-radius:26px;border:6px solid #0d0d10;box-shadow:0 18px 50px rgba(0,0,0,.35);background:#0b1120}
-.phone.front{transform:translateX(42px) rotate(3deg);z-index:2}
-.phone.back{transform:translateX(-62px) translateY(18px) rotate(-6deg);opacity:.9}
-@media (max-width:560px){.visual.phones{min-height:400px}.phone{width:160px}.phone.front{transform:translateX(34px) rotate(3deg)}.phone.back{transform:translateX(-50px) translateY(14px) rotate(-6deg)}}
-/* language switch: each text exists in both languages, CSS shows one */
-html:not([data-lang="es"]) [data-l="es"],
-html[data-lang="es"] [data-l="en"]{display:none !important}
-.lang-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;height:34px;padding:0 12px;cursor:pointer;font:600 12px "JetBrains Mono",monospace;letter-spacing:.06em}
+/* rows: experience + projects share one card treatment; hovering one dims the rest */
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.item{position:relative;display:grid;grid-template-columns:128px minmax(0,1fr);gap:20px;padding:18px 20px;margin-inline:-20px;border-radius:10px;transition:background .15s,opacity .15s}
+@media (hover:hover){
+  .list:hover .item{opacity:.5}
+  .list:hover .item:hover{opacity:1;background:var(--hover)}
+}
+.when{font:400 12px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
+.item h3{margin:0;color:var(--fg);font-size:16px;font-weight:500;line-height:1.4;letter-spacing:-.005em}
+.item h3 a::after{content:"";position:absolute;inset:0;border-radius:10px}
+.item h3 .arrow{display:inline-block;margin-left:4px;font-size:13px;transition:transform .15s}
+.item:hover h3 .arrow{transform:translate(2px,-2px)}
+.item h3 .sub{color:var(--muted);font-weight:400}
+.item p{margin:8px 0 0;font-size:14.5px;max-width:58ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tags span{font:500 11.5px var(--mono);color:var(--accent);background:var(--tag-bg);border-radius:999px;padding:2px 10px}
+.meta{margin-top:10px;font:400 12px var(--mono);color:var(--faint)}
+.thumb{width:128px;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px;margin-top:4px}
+.more{position:relative;z-index:1;display:inline-flex;gap:14px;margin-top:12px;font:500 13px var(--sans)}
+.more a{color:var(--muted)}
+.more a:hover{color:var(--fg)}
+.cta{display:inline-flex;align-items:center;gap:6px;margin-top:28px;color:var(--fg);font-weight:500}
+.cta:hover{text-decoration:underline;text-underline-offset:4px}
 
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
-.skill h4{font:700 16px "Bricolage Grotesque",sans-serif;margin-bottom:12px}
-.skill ul{list-style:none;display:grid;gap:6px;color:var(--muted);font-size:14.5px}
+footer{font-size:13px;color:var(--faint);max-width:44ch}
 
-/* about + contact */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.about p{color:var(--muted);font-size:17px;margin-bottom:14px}
-.about p strong{color:var(--ink)}
-.contact{background:var(--ink);color:var(--bg);border-radius:20px;padding:56px 40px;text-align:center}
-.contact h2{font-size:clamp(32px,5vw,56px);font-weight:800;margin-bottom:12px}
-.contact p{opacity:.7;margin-bottom:28px}
-.contact .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent)}
-.contact .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.contact .cta{justify-content:center}
-footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center}
-
-@media (max-width:860px){
-  .card{grid-template-columns:1fr}
-  .visual{border-left:0;border-top:1px solid var(--line);min-height:auto}
-  .skills{grid-template-columns:1fr 1fr}
-  .about{grid-template-columns:1fr;gap:24px}
+@media (max-width:1000px){
+  .page{grid-template-columns:1fr;gap:0}
+  .side{position:static;height:auto;padding-block:64px 8px}
+  .nav{display:none}
+  .side-foot{margin-top:28px}
+  main{padding-top:56px}
+  .mhead{display:block;position:sticky;top:env(safe-area-inset-top,0px);z-index:2;margin:0 -20px 20px;padding:12px 20px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);font:500 11.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg)}
+  section{margin-bottom:80px}
 }
 @media (max-width:560px){
-  .wrap{padding:0 16px}
-  .links a:not(.keep){display:none}
-  .hero{padding:64px 0 48px}
-  .stats{grid-template-columns:1fr}
-  .card .body,.visual{padding:22px}
-  .skills{grid-template-columns:1fr}
-  .contact{padding:40px 20px}
+  .item{grid-template-columns:1fr;gap:6px}
+  .proj .thumb{order:2;width:200px;margin-top:10px}
 }
 </style>
 </head>
 <body>
+<div class="page">
 
-<nav>
-  <div class="wrap">
-    <a href="#" class="logo">maxi<span>.</span>dev</a>
-    <div class="links">
-      <a href="#projects" class="keep"><span data-l="en">Projects</span><span data-l="es">Proyectos</span></a>
-      <a href="#skills">Skills</a>
-      <a href="#about"><span data-l="en">About</span><span data-l="es">Sobre mí</span></a>
-      <a href="#contact"><span data-l="en">Contact</span><span data-l="es">Contacto</span></a>
-      <button class="lang-btn" id="langBtn" aria-label="Cambiar idioma / Switch language"><span data-l="en">ES</span><span data-l="es">EN</span></button>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-    </div>
-  </div>
-</nav>
+  <header class="side">
+    <h1>Máximo Nuñez</h1>
+    <p class="role">Full-stack Engineer</p>
+    <p class="tagline" data-l="en">I build web and mobile products people actually use, with AI inside them.</p>
+    <p class="tagline" data-l="es">Construyo productos web y móviles que la gente usa de verdad, con IA adentro.</p>
+    <span class="now"><i></i><span data-l="en">IT Intern at Doppler · Mar del Plata, AR</span><span data-l="es">Pasante IT en Doppler · Mar del Plata, AR</span></span>
 
-<header class="hero">
-  <div class="wrap">
-    <span class="tag"><span class="dot"></span> <span data-l="en">Open to remote opportunities</span><span data-l="es">Abierto a oportunidades remotas</span></span>
-    <h1 data-l="en">I build apps <em>people actually use</em>.</h1>
-    <h1 data-l="es">Construyo apps que <em>la gente usa</em> de verdad.</h1>
-    <p class="lead" data-l="en">I'm Máximo Nuñez, a Systems Engineering student at Universidad CAECE and full-stack developer from Mar del Plata, Argentina. I build web and mobile products with React, React Native, TypeScript and Node.js, integrate third-party APIs, and use AI both inside the products and to ship them faster — from the first idea to a live product with real users.</p>
-    <p class="lead" data-l="es">Soy Máximo Nuñez, estudiante de Ingeniería en Sistemas en la Universidad CAECE y desarrollador full stack de Mar del Plata, Argentina. Hago productos web y móviles con React, React Native, TypeScript y Node.js, integro APIs de terceros y uso inteligencia artificial tanto dentro de los productos como para construirlos más rápido: desde la idea hasta que está online y con usuarios reales.</p>
-    <div class="cta">
-      <a class="btn primary" href="#projects"><span data-l="en">View projects ↓</span><span data-l="es">Ver proyectos ↓</span></a>
-      <a class="btn" href="https://github.com/maxi579" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn" href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div>
-    <div class="stats">
-      <div class="stat"><b>104</b><span data-l="en">World Cup 2026 matches tracked live, from group stage to final</span><span data-l="es">partidos del Mundial 2026 en el prode, de grupos a la final</span></div>
-      <div class="stat"><b>50+</b><span data-l="en">production updates shipped during the tournament</span><span data-l="es">actualizaciones en producción durante el torneo</span></div>
-      <div class="stat"><b>3</b><span data-l="en">products shipped: web, mobile and AI voice</span><span data-l="es">productos propios: web, móvil y agente de voz con IA</span></div>
-    </div>
-  </div>
-</header>
+    <ul class="nav" id="nav">
+      <li><a href="#about"><span data-l="en">About</span><span data-l="es">Sobre mí</span></a></li>
+      <li><a href="#experience"><span data-l="en">Experience</span><span data-l="es">Experiencia</span></a></li>
+      <li><a href="#projects"><span data-l="en">Projects</span><span data-l="es">Proyectos</span></a></li>
+    </ul>
 
-<section id="projects">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="eyebrow"><span data-l="en">01 — Work</span><span data-l="es">01 — Trabajo</span></span><h2><span data-l="en">Projects</span><span data-l="es">Proyectos</span></h2></div>
-      <p data-l="en">Real products, real users, and the real problems I had to solve along the way.</p>
-      <p data-l="es">Productos reales, con usuarios reales y los problemas reales que tuve que resolver en el camino.</p>
-    </div>
-
-    <div class="projects">
-
-      <!-- SORTED -->
-      <article class="card">
-        <div class="body">
-          <span class="status wip"><span data-l="en">● In development · Mobile app</span><span data-l="es">● En desarrollo · App móvil</span></span>
-          <h3><span data-l="en">Sorted — your money, sorted</span><span data-l="es">Sorted — tu plata, en orden</span></h3>
-          <p data-l="en">A personal finance app that does the work for you. Built around how money works in Argentina (credit card installments, fixed bills, cash and inflation), it logs expenses almost on its own and tells you what matters, in language simple enough for anyone to use.</p>
-          <p data-l="es">Una app de finanzas personales que hace el trabajo por vos. Pensada para cómo se maneja la plata en Argentina (cuotas, gastos fijos, efectivo e inflación), anota los gastos casi sola y te avisa lo importante, con un lenguaje tan simple que la puede usar cualquiera.</p>
-          <ul class="feat" data-l="en">
-            <li><b>Logs itself</b>: auto-debited subscriptions, payments detected from wallet notifications (Android) and forwarded emails, receipts read from a photo, and voice entry with Siri</li>
-            <li><b>Learns as you use it</b>: categories, an automatic monthly budget per category, and alerts when you spend more than usual</li>
-            <li>Fixed bills and subscriptions with due-date reminders; a cash wallet count that finds what you forgot to log</li>
-            <li>AI assistant (Claude API with tool use) that answers with your real numbers; "Should I buy it?" and installments vs. upfront in today's money</li>
-            <li>Net worth and a “how much will it earn?” calculator with live fixed-term rates from the Central Bank and official inflation</li>
-          </ul>
-          <ul class="feat" data-l="es">
-            <li><b>Se anota sola</b>: débitos automáticos, pagos detectados en las notificaciones de billeteras (Android) y en mails reenviados, tickets leídos con una foto y carga por voz con Siri</li>
-            <li><b>Aprende con el uso</b>: las categorías, un presupuesto mensual automático por categoría y avisos cuando gastás más de lo normal</li>
-            <li>Gastos fijos y suscripciones con avisos de vencimiento; conteo de la billetera que encuentra el efectivo que no anotaste</li>
-            <li>Asistente con IA (Claude API con herramientas) que responde con tus números; ¿Lo compro? y contado contra cuotas en plata de hoy</li>
-            <li>Patrimonio y calculadora “¿cuánto me rinde?” con las tasas de plazo fijo del BCRA y la inflación del INDEC</li>
-          </ul>
-          <div class="chips"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Claude API</span><span class="chip">Kotlin</span><span class="chip">Tests</span></div>
-          <div class="links-row"><a href="sorted/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/sorted" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
-        </div>
-        <div class="visual phones">
-          <img class="phone back" src="img/sorted-fijos.jpg" alt="Fixed bills and subscriptions screen with paid and upcoming bills" loading="lazy">
-          <img class="phone front" src="img/sorted-inicio.jpg" alt="Sorted home screen with this month's payments and the assistant's tips" loading="lazy">
-        </div>
-      </article>
-
-      <!-- PRODE -->
-      <article class="card">
-        <div class="body">
-          <span class="status live"><span data-l="en">● Used in production · World Cup 2026</span><span data-l="es">● Usado en producción · Mundial 2026</span></span>
-          <h3>Prode LineUp</h3>
-          <p data-l="en">A World Cup 2026 prediction game built for the employees of LineUp. It ran for the whole tournament: people submitted their predictions, competed on a live leaderboard, and the winner took home an official Argentina jersey.</p>
-          <p data-l="es">Plataforma de pronósticos del Mundial 2026 hecha para los empleados de la empresa LineUp. Funcionó durante todo el torneo: los usuarios cargaban sus resultados, competían en un ranking en vivo y el ganador se llevaba la camiseta de Argentina.</p>
-          <ul class="feat" data-l="en">
-            <li>Google sign-in and real-time data with Supabase</li>
-            <li>Scoring system (3 points for the exact score, 1 for the right winner) with a live leaderboard</li>
-            <li>Predictions lock automatically 15 minutes before kickoff</li>
-            <li>Standings for all 12 groups and the full knockout bracket, including penalty shootouts</li>
-            <li>Maintained live during the tournament; fixed Supabase's 1,000-row query limit with pagination as predictions grew</li>
-          </ul>
-          <ul class="feat" data-l="es">
-            <li>Inicio de sesión con Google y datos en tiempo real con Supabase</li>
-            <li>Sistema de puntos (3 por resultado exacto, 1 por acertar el ganador) y ranking en vivo</li>
-            <li>Pronósticos que se bloquean 15 minutos antes de cada partido</li>
-            <li>Tablas de los 12 grupos y cuadro eliminatorio completo, con definición por penales</li>
-            <li>Mantenimiento en vivo durante el torneo; resolví el límite de 1.000 filas de Supabase paginando las consultas</li>
-          </ul>
-          <div class="chips"><span class="chip">React 19</span><span class="chip">Vite</span><span class="chip">Supabase</span><span class="chip">React Router</span><span class="chip">Vercel</span></div>
-          <div class="links-row"><a href="https://maxi579.github.io/prode-lineup/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/prode-lineup" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
-        </div>
-        <div class="visual browsers">
-          <div class="browser back"><div class="browser-bar"><i></i><i></i><i></i></div><img src="img/prode-final.jpg" alt="World Cup 2026 final in the app: Spain 1, Argentina 0, with the user's prediction" loading="lazy"></div>
-          <div class="browser front"><div class="browser-bar"><i></i><i></i><i></i></div><img src="img/prode-ranking.jpg" alt="Leaderboard with points, exact scores and hits per player" loading="lazy"></div>
-        </div>
-      </article>
-
-      <!-- BOT -->
-      <article class="card">
-        <div class="body">
-          <span class="status live"><span data-l="en">● Complete · ready to deploy</span><span data-l="es">● Completo · listo para usar</span></span>
-          <h3><span data-l="en">AI voice booking assistant</span><span data-l="es">Bot de turnos con IA por voz</span></h3>
-          <p data-l="en">A phone assistant that answers calls, talks with the customer to book an appointment and confirms it on WhatsApp automatically. Built for hair salons, clinics and any business that works with appointments.</p>
-          <p data-l="es">Un asistente telefónico con inteligencia artificial que atiende llamadas, conversa con el cliente para darle un turno y le manda la confirmación por WhatsApp de forma automática. Pensado para peluquerías, consultorios y otros negocios que dan turnos.</p>
-          <ul class="feat" data-l="en">
-            <li>The voice agent (Retell AI) checks the schedule in real time and only offers open slots</li>
-            <li>Books during the call, with no double bookings even under concurrent requests</li>
-            <li>Automatic WhatsApp confirmations and cancellation notices (Twilio)</li>
-            <li>Admin panel to review and cancel appointments</li>
-            <li>Signature-verified webhooks and 14 automated tests</li>
-          </ul>
-          <ul class="feat" data-l="es">
-            <li>El agente de voz (Retell AI) consulta la agenda en tiempo real y solo ofrece horarios libres</li>
-            <li>Reserva durante la llamada, sin turnos superpuestos aunque lleguen dos pedidos a la vez</li>
-            <li>Confirmación y aviso de cancelación automáticos por WhatsApp (Twilio)</li>
-            <li>Panel de administración para ver y cancelar turnos</li>
-            <li>Webhooks verificados con firma y 14 tests automáticos</li>
-          </ul>
-          <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MySQL</span><span class="chip">Retell AI</span><span class="chip">Twilio</span><span class="chip">Webhooks</span><span class="chip">Tests</span></div>
-          <div class="links-row"><a href="https://maxi579.github.io/bot-turnos-ia/demo/" target="_blank" rel="noopener"><span data-l="en">Try the demo ↗</span><span data-l="es">Probar la demo ↗</span></a><a href="https://github.com/maxi579/bot-turnos-ia" target="_blank" rel="noopener"><span data-l="en">View code ↗</span><span data-l="es">Ver código ↗</span></a></div>
-        </div>
-        <div class="visual browsers solo">
-          <div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><img src="img/bot-demo.jpg" alt="Demo: simulated call with the AI agent, the server function it calls, the WhatsApp confirmation and the new appointment on the business dashboard" loading="lazy"></div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="eyebrow"><span data-l="en">02 — Toolbox</span><span data-l="es">02 — Herramientas</span></span><h2><span data-l="en">What I work with</span><span data-l="es">Con qué trabajo</span></h2></div>
-    </div>
-    <div class="skills">
-      <div class="skill"><h4>Frontend</h4><ul><li>JavaScript (ES6+) · TypeScript</li><li>React</li><li><span data-l="en">React Native &amp; Expo</span><span data-l="es">React Native y Expo</span></li><li><span data-l="en">Responsive HTML &amp; CSS</span><span data-l="es">HTML y CSS responsive</span></li></ul></div>
-      <div class="skill"><h4>Backend</h4><ul><li>Node.js · Express</li><li><span data-l="en">REST APIs &amp; webhooks</span><span data-l="es">APIs REST y webhooks</span></li><li>Supabase Edge Functions</li><li><span data-l="en">Auth (OAuth with Google)</span><span data-l="es">Autenticación (OAuth con Google)</span></li></ul></div>
-      <div class="skill"><h4><span data-l="en">Data &amp; integrations</span><span data-l="es">Datos e integraciones</span></h4><ul><li>PostgreSQL (Supabase) · MySQL</li><li>Claude API</li><li>Twilio / WhatsApp</li><li><span data-l="en">Retell AI (voice agents)</span><span data-l="es">Retell AI (agentes de voz)</span></li></ul></div>
-      <div class="skill"><h4><span data-l="en">Workflow</span><span data-l="es">Flujo de trabajo</span></h4><ul><li>Git &amp; GitHub</li><li>Vercel · GitHub Pages</li><li><span data-l="en">Automated testing</span><span data-l="es">Tests automáticos</span></li><li><span data-l="en">AI-assisted development</span><span data-l="es">Desarrollo asistido con IA</span></li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap about">
-    <div><span class="eyebrow"><span data-l="en">03 — About</span><span data-l="es">03 — Sobre mí</span></span><h2 style="font-size:clamp(32px,4.5vw,48px);font-weight:800"><span data-l="en">I learn by shipping.</span><span data-l="es">Aprendo construyendo.</span></h2></div>
-    <div>
-      <p data-l="en">I like turning ideas into products that work. My biggest project so far, <strong>Prode LineUp</strong>, was used by an entire company during the 2026 World Cup: I kept adding matches, fixing schedules and solving scaling issues live, while people used it every day.</p>
-      <p data-l="es">Me gusta convertir ideas en productos que funcionen. Mi proyecto más grande hasta ahora, <strong>Prode LineUp</strong>, lo usó una empresa entera durante el Mundial 2026: fui agregando partidos, corrigiendo horarios y resolviendo problemas de escala en vivo, mientras la gente lo usaba todos los días.</p>
-      <p data-l="en">I build with <strong>AI as a co-pilot</strong>: I define the product and its priorities, review and test what gets built, and ship it to real users. I also put AI inside the products themselves — from a voice agent that books appointments to reading credit card statements.</p>
-      <p data-l="es">Trabajo con <strong>la IA como copiloto</strong>: defino el producto y sus prioridades, reviso y pruebo lo que se construye, y lo llevo a usuarios reales. También pongo IA dentro de los productos: desde un agente de voz que da turnos hasta la lectura de resúmenes de tarjeta.</p>
-      <p data-l="en">In October 2026 I'm joining <strong>Doppler</strong>, an email marketing platform, as an IT intern — and I keep building my own products on the side.</p>
-      <p data-l="es">En octubre de 2026 empiezo una pasantía en el área de IT de <strong>Doppler</strong>, una plataforma de email marketing, y en paralelo sigo construyendo mis propios productos.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact">
-      <h2><span data-l="en">Let's work together</span><span data-l="es">¿Trabajamos juntos?</span></h2>
-      <p data-l="en">Have a project or an opportunity? Reach out.</p>
-      <p data-l="es">Si tenés un proyecto o una oportunidad, escribime.</p>
-      <div class="cta">
-        <a class="btn primary" href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn" href="https://github.com/maxi579" target="_blank" rel="noopener">GitHub</a>
+    <div class="side-foot">
+      <a href="https://github.com/maxi579" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+      <a href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+      <div class="toggles">
+        <button id="lang" type="button">ES</button>
+        <button id="theme" type="button" aria-label="Toggle theme">◐</button>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<footer><span data-l="en">© 2026 Máximo Nuñez · Built with HTML, CSS and a bit of coffee</span><span data-l="es">© 2026 Máximo Nuñez · Hecho con HTML, CSS y un poco de café</span></footer>
+  <main>
+    <section id="about" class="about">
+      <div class="mhead"><span data-l="en">About</span><span data-l="es">Sobre mí</span></div>
+      <p data-l="en">I'm a Systems Engineering student at <b>Universidad CAECE</b> and a full-stack developer who likes taking an idea all the way to a live product with real users. I work mostly with <b>React, React Native, TypeScript and Node.js</b>, and I integrate whatever the product needs: voice agents, WhatsApp, LLMs, banking data.</p>
+      <p data-l="es">Soy estudiante de Ingeniería en Sistemas en la <b>Universidad CAECE</b> y desarrollador full stack. Me gusta llevar una idea hasta un producto online con usuarios reales. Trabajo sobre todo con <b>React, React Native, TypeScript y Node.js</b>, e integro lo que el producto necesite: agentes de voz, WhatsApp, LLMs, datos bancarios.</p>
+      <p data-l="en">My largest project so far, <a href="#projects">Prode LineUp</a>, was used by an entire company during the 2026 World Cup. I kept shipping fixes and new matches to production while people used it every day, including a live fix when the app outgrew Supabase's default query limit.</p>
+      <p data-l="es">Mi proyecto más grande hasta ahora, <a href="#projects">Prode LineUp</a>, lo usó una empresa entera durante el Mundial 2026. Seguí subiendo correcciones y partidos a producción mientras la gente lo usaba todos los días, incluido un arreglo en vivo cuando la app superó el límite de consultas de Supabase.</p>
+      <p data-l="en">Today I'm an IT intern at <b>Doppler</b>, an email marketing platform, and I'm building <b>Sorted</b>, a personal finance app designed around how money works in Argentina.</p>
+      <p data-l="es">Hoy soy pasante de IT en <b>Doppler</b>, una plataforma de email marketing, y estoy construyendo <b>Sorted</b>, una app de finanzas personales pensada para cómo se maneja la plata en Argentina.</p>
+    </section>
+
+    <section id="experience">
+      <div class="mhead"><span data-l="en">Experience</span><span data-l="es">Experiencia</span></div>
+      <ol class="list">
+        <li class="item">
+          <div class="when"><span data-l="en">Oct 2026 — Present</span><span data-l="es">Oct 2026 — Hoy</span></div>
+          <div>
+            <h3><span data-l="en">IT Intern</span><span data-l="es">Pasante IT</span> <span class="sub">· Doppler</span></h3>
+            <p data-l="en">IT team at Doppler, an email marketing platform.</p>
+            <p data-l="es">Equipo de IT en Doppler, una plataforma de email marketing.</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="when">Jun — Jul 2026</div>
+          <div>
+            <h3><a href="https://maxi579.github.io/prode-lineup/" target="_blank" rel="noopener"><span data-l="en">Full-stack Developer</span><span data-l="es">Desarrollador full stack</span> <span class="sub">· LineUp</span><span class="arrow">↗</span></a></h3>
+            <p data-l="en">Designed, built and ran the company's World Cup 2026 prediction game end to end. Shipped 50+ production updates across the tournament's 104 matches, with Google sign-in, a live leaderboard and predictions that lock 15 minutes before kickoff.</p>
+            <p data-l="es">Diseñé, construí y mantuve de punta a punta el prode del Mundial 2026 de la empresa. Más de 50 actualizaciones en producción a lo largo de los 104 partidos, con login de Google, ranking en vivo y pronósticos que se bloquean 15 minutos antes de cada partido.</p>
+            <div class="tags"><span>React 19</span><span>Vite</span><span>Supabase</span><span>Vercel</span></div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="when"><span data-l="en">In progress</span><span data-l="es">En curso</span></div>
+          <div>
+            <h3><span data-l="en">Systems Engineering</span><span data-l="es">Ingeniería en Sistemas</span> <span class="sub">· Universidad CAECE</span></h3>
+            <p data-l="en">Undergraduate degree, Mar del Plata.</p>
+            <p data-l="es">Carrera de grado, Mar del Plata.</p>
+          </div>
+        </li>
+      </ol>
+      <a class="cta" href="https://www.linkedin.com/in/maximo-nu%C3%B1ez-0664b6431/" target="_blank" rel="noopener"><span data-l="en">View full profile on LinkedIn</span><span data-l="es">Ver perfil completo en LinkedIn</span> ↗</a>
+    </section>
+
+    <section id="projects">
+      <div class="mhead"><span data-l="en">Projects</span><span data-l="es">Proyectos</span></div>
+      <ul class="list">
+        <li class="item proj">
+          <img class="thumb" src="img/sorted-inicio.jpg" alt="" loading="lazy">
+          <div>
+            <h3><a href="https://maxi579.github.io/sorted/" target="_blank" rel="noopener">Sorted<span class="arrow">↗</span></a></h3>
+            <p data-l="en">Personal finance app for Argentina: installments, fixed bills, cash and inflation. Logs expenses from wallet notifications, forwarded emails, receipt photos and Siri, and includes a Claude-powered assistant that answers with your real numbers.</p>
+            <p data-l="es">App de finanzas personales para Argentina: cuotas, gastos fijos, efectivo e inflación. Registra gastos desde notificaciones de billeteras, mails reenviados, fotos de tickets y Siri, y tiene un asistente con Claude que responde con tus números reales.</p>
+            <div class="meta" data-l="en">In development · iOS &amp; Android</div>
+            <div class="meta" data-l="es">En desarrollo · iOS y Android</div>
+            <div class="tags"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Supabase</span><span>Claude API</span><span>Kotlin</span></div>
+            <div class="more"><a href="https://github.com/maxi579/sorted" target="_blank" rel="noopener"><span data-l="en">Source</span><span data-l="es">Código</span> ↗</a></div>
+          </div>
+        </li>
+        <li class="item proj">
+          <img class="thumb" src="img/prode-ranking.jpg" alt="" loading="lazy">
+          <div>
+            <h3><a href="https://maxi579.github.io/prode-lineup/" target="_blank" rel="noopener">Prode LineUp<span class="arrow">↗</span></a></h3>
+            <p data-l="en">World Cup 2026 prediction game used by an entire company for the whole tournament. Scoring, live leaderboard, all 12 groups and the full knockout bracket with penalty shootouts.</p>
+            <p data-l="es">Prode del Mundial 2026 que usó una empresa entera durante todo el torneo. Puntaje, ranking en vivo, los 12 grupos y el cuadro eliminatorio completo con penales.</p>
+            <div class="meta" data-l="en">104 matches · 50+ production deploys</div>
+            <div class="meta" data-l="es">104 partidos · más de 50 deploys a producción</div>
+            <div class="more"><a href="https://github.com/maxi579/prode-lineup" target="_blank" rel="noopener"><span data-l="en">Source</span><span data-l="es">Código</span> ↗</a></div>
+          </div>
+        </li>
+        <li class="item proj">
+          <img class="thumb" src="img/bot-demo.jpg" alt="" loading="lazy">
+          <div>
+            <h3><a href="https://maxi579.github.io/bot-turnos-ia/demo/" target="_blank" rel="noopener"><span data-l="en">AI Voice Booking Assistant</span><span data-l="es">Bot de turnos por voz</span><span class="arrow">↗</span></a></h3>
+            <p data-l="en">Phone agent that books appointments during the call and confirms them on WhatsApp. Checks availability in real time, prevents double bookings under concurrent calls, and verifies every webhook signature.</p>
+            <p data-l="es">Agente telefónico que da turnos durante la llamada y los confirma por WhatsApp. Consulta disponibilidad en tiempo real, evita turnos superpuestos con llamadas simultáneas y verifica la firma de cada webhook.</p>
+            <div class="meta" data-l="en">14 automated tests</div>
+            <div class="meta" data-l="es">14 tests automáticos</div>
+            <div class="tags"><span>Node.js</span><span>Express</span><span>MySQL</span><span>Retell AI</span><span>Twilio</span></div>
+            <div class="more"><a href="https://github.com/maxi579/bot-turnos-ia" target="_blank" rel="noopener"><span data-l="en">Source</span><span data-l="es">Código</span> ↗</a></div>
+          </div>
+        </li>
+      </ul>
+      <a class="cta" href="https://github.com/maxi579" target="_blank" rel="noopener"><span data-l="en">All repositories on GitHub</span><span data-l="es">Todos los repositorios en GitHub</span> ↗</a>
+    </section>
+
+    <footer>
+      <p data-l="en">Designed and built by Máximo Nuñez. Plain HTML, CSS and JavaScript, set in Geist, hosted on GitHub Pages.</p>
+      <p data-l="es">Diseñado y construido por Máximo Nuñez. HTML, CSS y JavaScript sin frameworks, tipografía Geist, publicado en GitHub Pages.</p>
+    </footer>
+  </main>
+</div>
 
 <script>
-  const root = document.documentElement;
+(function(){
+  var root=document.documentElement;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
-  // Idioma: el que eligió antes > el del navegador > inglés
-  function ponerIdioma(idioma) {
-    root.dataset.lang = idioma;
-    root.lang = idioma;
-    document.title = idioma === 'es' ? 'Máximo Nuñez · Desarrollador full stack' : 'Máximo Nuñez · Full-Stack Developer';
-  }
-  let idioma = 'en';
-  try { idioma = localStorage.getItem('lang') || ((navigator.language || '').startsWith('es') ? 'es' : 'en'); } catch (e) {}
-  ponerIdioma(idioma);
-  document.getElementById('langBtn').addEventListener('click', () => {
-    const nuevo = root.dataset.lang === 'es' ? 'en' : 'es';
-    ponerIdioma(nuevo);
-    try { localStorage.setItem('lang', nuevo); } catch (e) {}
-  });
+  var lb=document.getElementById('lang');
+  function applyLang(l){root.lang=l;lb.textContent=l==='en'?'ES':'EN';set('lang',l)}
+  applyLang(get('lang')||((navigator.language||'en').slice(0,2)==='es'?'es':'en'));
+  lb.onclick=function(){applyLang(root.lang==='en'?'es':'en')};
 
-  // Tema claro / oscuro
-  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
-  document.getElementById('themeBtn').addEventListener('click', () => {
-    const oscuro = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = oscuro ? 'light' : 'dark';
-    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
-  });
+  var t=get('theme');if(t)root.dataset.theme=t;
+  document.getElementById('theme').onclick=function(){
+    var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme=dark?'light':'dark';set('theme',root.dataset.theme);
+  };
+
+  // Highlight the nav entry for the section in view.
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting)links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)});
+  })},{rootMargin:'-35% 0px -60% 0px'});
+  ['about','experience','projects'].forEach(function(id){io.observe(document.getElementById(id))});
+  links[0].classList.add('active');
+})();
 </script>
 </body>
 </html>
